@@ -5,6 +5,8 @@ public class PlayerPawn : Pawn
 {
     #region const
     private const float SHOOT_DELAY_TIME = 0.25F;
+    private const float LEFT_CAGE = -0.5F;
+    private const float RIGHT_CAGE = 0.5F;
     #endregion
 
     #region private:
@@ -25,12 +27,17 @@ public class PlayerPawn : Pawn
     
     public void MoveBy(Vector3 amount)
     {
-        transform.position += amount;
+        Vector3 NextPos = transform.position;
+        NextPos += amount;
+        NextPos.x = Mathf.Max (LEFT_CAGE, NextPos.x);
+        NextPos.x = Mathf.Min (RIGHT_CAGE, NextPos.x);
+
+        transform.position = NextPos;
     }
     #endregion
 
     #region private:
-    private void Start()
+    protected override void Start()
     {
         // activate shoot by default
         StartShoot();
