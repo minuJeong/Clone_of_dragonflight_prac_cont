@@ -1,12 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMissileSpawnControl : MissileSpawnControl
+public sealed class PlayerMissileSpawnControl : MissileSpawnControl
 {
-    protected void Start()
+    private const float SPAWN_DELAY = 0.07F;
+
+    private void Start()
     {
-        m_SpawnDelay = 0.25F;
+        m_SpawnDelay = SPAWN_DELAY;
         Initialize();
         StartSpawn();
+    }
+
+    // override for new coroutine cycle
+    protected override IEnumerator SpawnCycle()
+    {
+        while (true)
+        {
+            if (m_IsSpawning)
+            {
+                Spawn();
+            }
+            yield return m_WaitTime;
+        }
     }
 }

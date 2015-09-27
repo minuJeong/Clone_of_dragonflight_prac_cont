@@ -4,7 +4,6 @@ using System.Collections;
 public abstract class MissileSpawnControl : SpawnControl
 {
     public static ObjectPool<GameObject> MissilePool;
-
     public GameObject m_PrototypeMissile;
 
     public override void Initialize()
@@ -15,7 +14,7 @@ public abstract class MissileSpawnControl : SpawnControl
         {
             GameObject AllocatedMissile = GameObject.Instantiate(m_PrototypeMissile);
             AllocatedMissile.SetActive(false);
-            AllocatedMissile.transform.SetParent(transform);
+            AllocatedMissile.transform.SetParent(Game.Instance.transform);
             return AllocatedMissile;
         });
     }
@@ -24,8 +23,6 @@ public abstract class MissileSpawnControl : SpawnControl
     {
         GameObject SpawnedMissile = MissilePool.pop();
         SpawnedMissile.SetActive(true);
-
-        SpawnedMissile.transform.localPosition = Vector3.zero;
-        SpawnedMissile.transform.SetParent(transform);
+        SpawnedMissile.transform.position = transform.position;
     }
 }

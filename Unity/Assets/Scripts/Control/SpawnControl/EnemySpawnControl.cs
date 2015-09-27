@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemySpawnControl : SpawnControl
+public sealed class EnemySpawnControl : SpawnControl
 {
     public static ObjectPool<GameObject> EnemyPool;
 
@@ -10,13 +10,14 @@ public class EnemySpawnControl : SpawnControl
     private const float RIGHT = 0.5F;
     private const float TOP = 2.0F;
     private const float STEP = (RIGHT - LEFT) / SPAWN_COUNT;
+    private float SpawnDelay = 2.5F;
 
     // Set in UnityEditor - prefab (not scene object)
     public GameObject m_PrototypeEnemyPawn;
 
     public override void Initialize()
     {
-        m_SpawnDelay = 5.0F;
+        m_SpawnDelay = SpawnDelay;
 
         // base.Initialize need to be called.
         base.Initialize();
@@ -25,7 +26,7 @@ public class EnemySpawnControl : SpawnControl
         {
             GameObject enemyPawn = GameObject.Instantiate(m_PrototypeEnemyPawn);
             enemyPawn.SetActive(false);
-            enemyPawn.transform.SetParent (transform);
+            enemyPawn.transform.SetParent (Game.Instance.transform);
             return enemyPawn;
         });
     }
@@ -37,8 +38,20 @@ public class EnemySpawnControl : SpawnControl
             GameObject SpawnedEnemyPawn = EnemyPool.pop();
             SpawnedEnemyPawn.SetActive (true);
 
-            Vector3 pos = new Vector3(LEFT + (STEP * i), TOP, 0);
+            Vector3 pos = new Vector3(LEFT + (STEP * (i + 0.5F)), TOP, 0);
             SpawnedEnemyPawn.transform.position = pos;
+        }
+    }
+
+    protected override IEnumerator SpawnCycle()
+    {
+        while (true)
+        {
+            if (m_IsSpawning)
+            {
+                Spawn();
+            }
+            yield return m_WaitTime;
         }
     }
 }

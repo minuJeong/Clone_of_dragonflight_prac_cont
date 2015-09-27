@@ -7,6 +7,8 @@ public class Game : MonoBehaviour
     public static EnemySpawnControl Instance_EnemySpawnControl;
     public static PlayerMoveInputControl Instance_InputControl;
 
+    public Camera GameCamera;
+
     // Use this for initialization
     void Awake()
     {

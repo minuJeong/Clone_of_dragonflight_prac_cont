@@ -1,30 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPawn : Pawn
+public sealed class EnemyPawn : Pawn
 {
     private const float SPEED = 0.025F;
     private Rect VALID_RECT = new Rect(-0.6F, -2.0F, 1.2F, 4.0F);
 
-    private Vector3 m_Velocity;
-
     protected override void Start()
     {
-        m_Velocity = Vector3.down * SPEED;
+        base.Start();
+        if (null == Data.Path)
+        {
+            Data.Velocity = Vector3.down * SPEED;
+            Data.Velocity += Data.Acceleration;
+            Data.MaxHP = 100.0F;
+            Data.HP = Data.MaxHP;
+            Data.HitRadius = 0.01F;
+        }
     }
 
-    protected override void Update()
+    private void Update()
     {
         if (transform.position.y < VALID_RECT.yMin)
         {
             Die();
         } else
         {
-            transform.position += m_Velocity;
+            if (null == Data.Path)
+            {
+                transform.position += Data.Velocity;
+            } else
+            {
+                transform.position = Data.Path.GetPositionGradually(Time.deltaTime);
+            }
         }
     }
 
-    protected override void Die()
+    public override void Die()
     {
         if (null != EnemySpawnControl.EnemyPool)
         {

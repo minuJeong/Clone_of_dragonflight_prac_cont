@@ -4,14 +4,15 @@ using System.Collections;
 public abstract class Missile : MonoBehaviour
 {
     public MissileDataModel Data;
-    public GameObject[] EnemyGroup;
+    public GameObject[] TargetGroup;
+    protected bool m_IsDead;
     
     // Update is called once per frame
     protected virtual void Update()
     {
         // Divided for readability
         UpdatePosition();
-        UpdateEnemyGroup();
+        UpdateTargetGroup();
         UpdateCollision();
     }
 
@@ -36,20 +37,28 @@ public abstract class Missile : MonoBehaviour
         }
     }
 
-    protected abstract void UpdateEnemyGroup();
+    // Gather valid target group
+    protected abstract void UpdateTargetGroup();
 
     protected virtual void UpdateCollision()
     {
-        if (null == EnemyGroup || 0 == EnemyGroup.Length)
+        if (null == TargetGroup || 0 == TargetGroup.Length)
         {
             return;
         }
 
-        int len = EnemyGroup.Length;
+        int len = TargetGroup.Length;
         for (int i = 0; i < len; i++)
         {
-            GameObject target = EnemyGroup [i];
+            GameObject target = TargetGroup [i];
             float sqrtDistance = (transform.position - target.transform.position).sqrMagnitude;
+
+            Pawn pawn = target.GetComponent<Pawn> ();
+            if (null != pawn)
+            {
+                sqrtDistance -= pawn.Data.HitRadius;
+            }
+
             if (sqrtDistance < Data.CollisionDistanceSqrt)
             {
                 OnCollision(target);
@@ -62,7 +71,8 @@ public abstract class Missile : MonoBehaviour
 
     protected virtual void Die ()
     {
-        this.gameObject.SetActive (false);
+        m_IsDead = true;
+        gameObject.SetActive (false);
         MissileSpawnControl.MissilePool.push (this.gameObject);
     }
 }
