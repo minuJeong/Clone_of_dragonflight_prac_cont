@@ -25,6 +25,12 @@ public class PlayerMissile : Missile
 
     protected override void OnCollision(GameObject target)
     {
+        EnemyPawn enemyPawn = target.GetComponent<EnemyPawn> ();
+        if (null == enemyPawn)
+        {
+            return;
+        }
+
 
     }
 }

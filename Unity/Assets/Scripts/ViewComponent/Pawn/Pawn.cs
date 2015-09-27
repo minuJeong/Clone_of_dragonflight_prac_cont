@@ -16,7 +16,13 @@ public class Pawn : MonoBehaviour
     #region Pawn Common
     protected virtual void Die()
     {
-        gameObject.SetActive (false);
+        gameObject.SetActive(false);
     }
     #endregion
+}
+
+public class PawnDataModel
+{
+    float HP, MaxHP, MP, MaxMP;
+    MovePath path;
 }
