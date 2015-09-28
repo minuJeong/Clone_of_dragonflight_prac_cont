@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 415974}
   - 212: {fileID: 21243298}
+  - 114: {fileID: 11415706}
   m_Layer: 0
   m_Name: View
   m_TagString: Untagged
@@ -26,7 +27,7 @@ GameObject:
   - 4: {fileID: 440662}
   - 114: {fileID: 11429102}
   m_Layer: 0
-  m_Name: PlayerMissile
+  m_Name: EnemyMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,6 +58,22 @@ Transform:
   - {fileID: 415974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11415706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1f080152715464096f3914f9a2a245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: a389bd6195c9c4bbca7f538441fe3b3e, type: 3}
+  - {fileID: 21300000, guid: ff4066af01eec415d96a444396ddbb79, type: 3}
+  - {fileID: 21300000, guid: 04a9d914423594ee39c6c192be6c6f26, type: 3}
+  - {fileID: 21300000, guid: ab36c6a557a4f412f873d30e9862a53d, type: 3}
 --- !u!114 &11429102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,11 +82,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 131802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca656518f58d044eb87ef8104df65d33, type: 3}
+  m_Script: {fileID: 11500000, guid: 34e6403306d2646de9835e708938406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetGroup: []
-  SPEED: .479999989
 --- !u!212 &21243298
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -104,6 +119,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 08bb618ef07404d66840c9780886dad5,
@@ -112,6 +131,26 @@ Prefab:
       propertyPath: SPEED
       value: .479999989
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: a389bd6195c9c4bbca7f538441fe3b3e,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ff4066af01eec415d96a444396ddbb79,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 04a9d914423594ee39c6c192be6c6f26,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ab36c6a557a4f412f873d30e9862a53d,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131802}

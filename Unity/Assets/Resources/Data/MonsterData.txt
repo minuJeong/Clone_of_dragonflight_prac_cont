@@ -1,32 +1,62 @@
 {
-	"Enemy_0":
-	{
-		"SpriteName": "mon0",
-		"HP": 20,
-		"Speed": 0.035
-	},
-	"Enemy_1":
-	{
-		"SpriteName": "mon1",
-		"HP": 30,
-		"Speed": 0.035
-	},
-	"Enemy_1_1":
-	{
-		"SpriteName": "mon1_1",
-		"HP": 50,
-		"Speed": 0.035
-	},
-	"Enemy_2":
-	{
-		"SpriteName": "mon2",
-		"HP": 70,
-		"Speed": 0.035
-	},
-	"Enemy_3":
-	{
-		"SpriteName": "mon3",
-		"HP": 80,
-		"Speed": 0.035
-	}
+    "Enemy_0": {
+        "SpriteName": "mon0",
+        "HP": 60,
+        "Speed": 0.03,
+        "Missile": {
+            "Speed": 0,
+            "Delay": 0,
+            "Damage": 0,
+            "Type": "None",
+            "SpriteName": ""
+        }
+    },
+    "Enemy_1": {
+        "SpriteName": "mon1",
+        "HP": 90,
+        "Speed": 0.03,
+        "Missile": {
+            "Speed": 1,
+            "Damage": 5,
+            "Delay": 1,
+            "Type": "Normal 1",
+            "SpriteName": "mon1_bullet"
+        }
+    },
+    "Enemy_1_1": {
+        "SpriteName": "mon1_1",
+        "HP": 150,
+        "Speed": 0.03,
+        "Missile": {
+            "Speed": 1,
+            "Damage": 10,
+            "Delay": 1,
+            "Type": "Normal 2",
+            "SpriteName": "mon2_bullet"
+        }
+    },
+    "Enemy_2": {
+        "SpriteName": "mon2",
+        "HP": 210,
+        "Speed": 0.03,
+        "Missile": {
+            "Speed": 1,
+            "Damage": 15,
+            "Delay": 1,
+            "Type": "Super 1",
+            "SpriteName": "mon3_bullet"
+        }
+    },
+    "Enemy_3": {
+        "SpriteName": "mon3",
+        "HP": 240,
+        "Speed": 0.03,
+        "Missile": {
+            "Speed": 1,
+            "Damage": 20,
+            "Delay": 1,
+            "Type": "Super 2",
+            "SpriteName": "mon3_bullet2"
+        }
+    }
 }

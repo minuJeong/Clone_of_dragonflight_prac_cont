@@ -4,10 +4,10 @@ using System.Collections;
 public sealed class EnemySpawnControl : SpawnControl
 {
     public static ObjectPool<GameObject> EnemyPool;
-    public float SpawnDelay = 4.5F;
-
-    private const int SPAWN_COUNT = 7;
+    public float SpawnDelay = 0.125F;
+    private const int SPAWN_COUNT = 9;
     private Rect ValidRect;
+    private int CurrentRow = 0;
     private float STEP = 0.0F;
 
     // Set in UnityEditor - prefab (not scene object)
@@ -18,7 +18,7 @@ public sealed class EnemySpawnControl : SpawnControl
         float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
         float h = Game.Instance.GameCamera.orthographicSize * 2;
 
-        ValidRect = new Rect (-w/2, -h/2, w, h);
+        ValidRect = new Rect(-w / 2, -h / 2, w, h);
 
         m_SpawnDelay = SpawnDelay;
 
@@ -29,7 +29,7 @@ public sealed class EnemySpawnControl : SpawnControl
         {
             GameObject enemyPawn = GameObject.Instantiate(m_PrototypeEnemyPawn);
             enemyPawn.SetActive(false);
-            enemyPawn.transform.SetParent (Game.Instance.transform);
+            enemyPawn.transform.SetParent(Game.Instance.transform);
             return enemyPawn;
         });
     }
@@ -37,14 +37,63 @@ public sealed class EnemySpawnControl : SpawnControl
     protected override void Spawn()
     {
         STEP = ValidRect.width / SPAWN_COUNT;
-        for (int i = 0; i < SPAWN_COUNT; i++)
-        {
-            GameObject SpawnedEnemyPawn = EnemyPool.pop();
-            SpawnedEnemyPawn.SetActive (true);
 
-            Vector3 pos = new Vector3(ValidRect.x + (STEP * (i + 0.5F)), ValidRect.yMax - 0.01F, 0);
-            SpawnedEnemyPawn.transform.position = pos;
+        SpawnDataModel[] dataSet = PawnSpawnPatternControl.Instance.ParseTexture("Pattern_0", CurrentRow);
+        int len = dataSet.Length;
+        Vector3 pos;
+        string EnemyName;
+
+        for (int i = 0; i < len; i++)
+        {
+            SpawnDataModel data = dataSet [i];
+            if (null == data)
+            {
+                continue;
+            }
+
+            switch (data.SpawnPattern)
+            {
+                case PawnSpawnPatternControl.SpawnPattern.NONE:
+                    continue;
+//                    break;
+
+                case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL:
+                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
+                    EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(0);
+                    SpawnOneEnemy(pos, EnemyName);
+                    break;
+
+                case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL_PLUS_1:
+                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
+                    EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(1);
+                    SpawnOneEnemy(pos, EnemyName);
+                    break;
+
+                case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL_PLUS_2:
+                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
+                    EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(2);
+                    SpawnOneEnemy(pos, EnemyName);
+                    break;
+
+                case PawnSpawnPatternControl.SpawnPattern.OBSTACLE_BREAKABLE:
+                    continue;
+//                    break;
+
+                case PawnSpawnPatternControl.SpawnPattern.OBSTACLE_UNBREAKABLE:
+                    continue;
+//                    break;
+            }
         }
+
+        CurrentRow++;
+    }
+
+    private void SpawnOneEnemy(Vector3 position, string enemyName)
+    {
+        GameObject SpawnedEnemyPawn = EnemyPool.pop();
+        SpawnedEnemyPawn.transform.position = position;
+        SpawnedEnemyPawn.GetComponent<EnemyPawn>().EnemyName = enemyName;
+        SpawnedEnemyPawn.SetActive(true);
     }
 
     protected override IEnumerator SpawnCycle()

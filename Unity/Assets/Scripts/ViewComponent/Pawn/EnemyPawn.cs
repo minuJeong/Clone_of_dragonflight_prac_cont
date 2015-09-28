@@ -5,10 +5,11 @@ using System.Collections;
 public sealed class EnemyPawn : Pawn
 {
     public RectTransform HPBarHUD;
-    private string EnemyName;
+    public string EnemyName;
     private Rect VALID_RECT;
     private SpriteRenderer View;
     private SpriteCollection SpriteCollection;
+    private WaitForSeconds ShootDelay;
 
     private void Awake()
     {
@@ -69,8 +70,6 @@ public sealed class EnemyPawn : Pawn
             HPBarHUD.gameObject.SetActive(true);
         }
 
-        EnemyName = DifficultyControl.Instance.GetCurrentEnemyName ();
-
         string SpriteName = MonsterDatatable.Data [EnemyName] ["SpriteName"].ToString();
         float HP = float.Parse(MonsterDatatable.Data [EnemyName] ["HP"].ToString());
         float Speed = float.Parse(MonsterDatatable.Data [EnemyName] ["Speed"].ToString());
@@ -78,18 +77,28 @@ public sealed class EnemyPawn : Pawn
         Data = new PawnDataModel(this);
         Data.Velocity = Vector3.down * Speed;
         Data.Velocity += Data.Acceleration;
-
         Data.MaxHP = HP;
         Data.HP = Data.MaxHP;
         Data.HitRadius = 0.25F;
 
-        int len = SpriteCollection.Sprites.Count;
-        for (int i = 0; i < len; i++)
+        View.sprite = SpriteCollection.GetSpriteByName(SpriteName);
+
+        float Delay = float.Parse(MonsterDatatable.Data [EnemyName] ["Missile"] ["Delay"].ToString());
+        if (Delay > 0)
         {
-            if (SpriteCollection.Sprites [i].name.Equals(SpriteName))
-            {
-                View.sprite = SpriteCollection.Sprites [i];
-            }
+            ShootDelay = new WaitForSeconds(Delay);
+            StartCoroutine("SpawnMissile");
+        }
+    }
+
+    private IEnumerator SpawnMissile()
+    {
+        while (true)
+        {
+            yield return ShootDelay;
+
+            Vector3 ShootPosition = transform.position + Vector3.down * 0.03F;
+            EnemyMissileSpawnControl.Instance.SpawnMissile(ShootPosition, EnemyName);
         }
     }
     

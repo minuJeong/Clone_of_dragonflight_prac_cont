@@ -3,7 +3,7 @@ using System.Collections;
 
 public sealed class PlayerMissileSpawnControl : MissileSpawnControl
 {
-    private const float SPAWN_DELAY = 0.05F;
+    private const float SPAWN_DELAY = 0.06F;
 
     private void Start()
     {
