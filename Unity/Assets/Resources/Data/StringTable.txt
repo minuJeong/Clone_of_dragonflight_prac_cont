@@ -1,3 +1,12 @@
 {
-	"SAMPLE": "Hello String"
+    "EN": {
+        "": "EMPTY STRING",
+        "Start Game": "Start Game",
+        "Shop": "Shop"
+    },
+    "KR": {
+		"": "빈 문자열",
+        "Start Game": "게임을 시작하세요.",
+        "Shop": "상점"
+    }
 }
