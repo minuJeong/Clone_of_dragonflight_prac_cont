@@ -33,7 +33,7 @@ public class MovePath
         {
             SumDistance += Vector3.Distance (Points [i], Points [i + 1]);
         }
-        
+         
         float progressDistance = SumDistance * progress;
         for (int i = 0; i < len - 1; i++)
         {

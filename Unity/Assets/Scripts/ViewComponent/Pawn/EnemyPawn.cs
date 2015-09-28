@@ -54,18 +54,18 @@ public sealed class EnemyPawn : Pawn
         }
 
         Data = new PawnDataModel(this);
-//        Data.Velocity = Vector3.down * SPEED;
-//        Data.Velocity += Data.Acceleration;
-        Data.Path = new MovePath ();
-        Data.Path.MaxLifeTime = 5.0F;
-        Data.Path.LifeTime = Data.Path.MaxLifeTime;
-        Data.Path.Points = new Vector3[]
-        {
-            new Vector3 (-.5F, 0, 0),
-            new Vector3 (0, -.5F, 0),
-            new Vector3 (0, .5F, 0),
-            new Vector3 (.5F, .5F, 0)
-        };
+        Data.Velocity = Vector3.down * SPEED;
+        Data.Velocity += Data.Acceleration;
+//        Data.Path = new MovePath ();
+//        Data.Path.MaxLifeTime = 5.0F;
+//        Data.Path.LifeTime = Data.Path.MaxLifeTime;
+//        Data.Path.Points = new Vector3[]
+//        {
+//            new Vector3 (-.5F, 0, 0),
+//            new Vector3 (0, -.5F, 0),
+//            new Vector3 (0, .5F, 0),
+//            new Vector3 (.5F, .5F, 0)
+//        };
 
         Data.MaxHP = 100000.0F;
         Data.HP = Data.MaxHP;
