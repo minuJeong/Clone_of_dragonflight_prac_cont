@@ -31,7 +31,7 @@ public sealed class PlayerPawn : Pawn
     private void OnEnable()
     {
         Data = new PawnDataModel(this);
-        Data.MaxHP = 100.0F;
+        Data.MaxHP = 1000000000000.0F;
         Data.HP = Data.MaxHP;
     }
 

@@ -5,7 +5,6 @@ public abstract class Missile : MonoBehaviour
 {
     public MissileDataModel Data;
     public GameObject[] TargetGroup;
-    protected bool m_IsDead;
     
     // Update is called once per frame
     protected virtual void Update()
@@ -71,9 +70,8 @@ public abstract class Missile : MonoBehaviour
 
     protected virtual void Die ()
     {
-        m_IsDead = true;
         gameObject.SetActive (false);
-        MissileSpawnControl.MissilePool.push (this.gameObject);
+        MissileSpawnControl.Instance.MissilePool.push (gameObject);
     }
 }
 

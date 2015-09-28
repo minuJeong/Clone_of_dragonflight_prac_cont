@@ -3,20 +3,34 @@ using System.Collections;
 
 public abstract class MissileSpawnControl : SpawnControl
 {
-    public static ObjectPool<GameObject> MissilePool;
+    public ObjectPool<GameObject> MissilePool;
     public GameObject m_PrototypeMissile;
+    private static MissileSpawnControl m_Instance;
+
+    public static MissileSpawnControl Instance
+    {
+        get
+        {
+            return m_Instance;
+        }
+    }
 
     public override void Initialize()
     {
+        if (null == m_Instance)
+        {
+            m_Instance = this;
+        }
+
         base.Initialize();
 
-        MissilePool = new ObjectPool<GameObject>(100, () =>
-        {
-            GameObject AllocatedMissile = GameObject.Instantiate(m_PrototypeMissile);
-            AllocatedMissile.SetActive(false);
-            AllocatedMissile.transform.SetParent(Game.Instance.transform);
-            return AllocatedMissile;
-        });
+//        MissilePool = new ObjectPool<GameObject>(100, () =>
+//        {
+//            GameObject AllocatedMissile = GameObject.Instantiate(m_PrototypeMissile);
+//            AllocatedMissile.SetActive(false);
+//            AllocatedMissile.transform.SetParent(Game.Instance.transform);
+//            return AllocatedMissile;
+//        });
     }
 
     protected override void Spawn()

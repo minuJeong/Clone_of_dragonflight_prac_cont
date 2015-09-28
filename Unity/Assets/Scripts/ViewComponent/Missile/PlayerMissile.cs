@@ -44,6 +44,7 @@ public sealed class PlayerMissile : Missile
 
     protected override void Die()
     {
-        base.Die();
+        gameObject.SetActive (false);
+        PlayerMissileSpawnControl.Instance.MissilePool.push (gameObject);
     }
 }

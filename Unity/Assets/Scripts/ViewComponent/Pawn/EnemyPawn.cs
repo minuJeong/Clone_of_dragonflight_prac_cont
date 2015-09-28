@@ -97,7 +97,7 @@ public sealed class EnemyPawn : Pawn
         {
             yield return ShootDelay;
 
-            Vector3 ShootPosition = transform.position + Vector3.down * 0.03F;
+            Vector3 ShootPosition = transform.position;
             EnemyMissileSpawnControl.Instance.SpawnMissile(ShootPosition, EnemyName);
         }
     }

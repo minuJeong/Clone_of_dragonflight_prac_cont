@@ -26,7 +26,7 @@ public class EnemyMissileSpawnControl : MonoBehaviour
         }
     }
 
-    private static ObjectPool<GameObject> MissilePool;
+    public ObjectPool<GameObject> MissilePool;
     public GameObject m_ProtoyupeEnemyMissile;
 
     void Awake()
@@ -44,7 +44,7 @@ public class EnemyMissileSpawnControl : MonoBehaviour
         {
             GameObject enemyMissile = GameObject.Instantiate(m_ProtoyupeEnemyMissile);
             enemyMissile.SetActive(false);
-            enemyMissile.transform.SetParent(Game.Instance.transform);
+            enemyMissile.transform.SetParent(Game.Instance.transform.FindChild ("EnemyMissilePool"));
             return enemyMissile;
         });
     }

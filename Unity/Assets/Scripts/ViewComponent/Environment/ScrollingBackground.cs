@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ScrollingBackground : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -11,11 +10,5 @@ public class ScrollingBackground : MonoBehaviour
         float h = Game.Instance.GameCamera.orthographicSize * 2;
 
         transform.localScale = new Vector3(w, h, 1.0F);
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-    
     }
 }

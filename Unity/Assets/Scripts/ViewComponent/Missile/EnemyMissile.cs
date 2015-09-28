@@ -27,7 +27,17 @@ public class EnemyMissile : Missile
         if ("" != EnemyName)
         {
             Data = EnemyMissileDataLoader.Instance.GetDataModel(EnemyName);
-            m_SpriteRenderer.sprite = m_SpriteCollection.GetSpriteByName(EnemyName);
+            m_SpriteRenderer.sprite = m_SpriteCollection.GetSpriteByName(EnemyMissileDataLoader.Instance.GetSpriteName(EnemyName));
+        }
+    }
+
+    protected override void UpdatePosition()
+    {
+        transform.position += Data.Velocity * Time.deltaTime;
+
+        if (! Data.ValidArea.Contains(transform.position))
+        {
+            Die();
         }
     }
 
@@ -39,10 +49,19 @@ public class EnemyMissile : Missile
     protected override void OnCollision(GameObject target)
     {
         PlayerPawn player = target.GetComponent<PlayerPawn>();
-        if (null != player)
+        if (null == player)
         {
-            player.Data.HP -= Data.Damage;
+            return;
         }
+
+        player.Data.HP -= Data.Damage;
+        Die ();
+    }
+
+    protected override void Die()
+    {
+        gameObject.SetActive (false);
+        EnemyMissileSpawnControl.Instance.MissilePool.push (gameObject);
     }
 }
 

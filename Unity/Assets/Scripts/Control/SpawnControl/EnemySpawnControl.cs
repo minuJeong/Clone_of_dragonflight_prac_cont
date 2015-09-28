@@ -29,7 +29,7 @@ public sealed class EnemySpawnControl : SpawnControl
         {
             GameObject enemyPawn = GameObject.Instantiate(m_PrototypeEnemyPawn);
             enemyPawn.SetActive(false);
-            enemyPawn.transform.SetParent(Game.Instance.transform);
+            enemyPawn.transform.SetParent(Game.Instance.transform.FindChild ("EnemyPawnPool"));
             return enemyPawn;
         });
     }
@@ -38,7 +38,7 @@ public sealed class EnemySpawnControl : SpawnControl
     {
         STEP = ValidRect.width / SPAWN_COUNT;
 
-        SpawnDataModel[] dataSet = PawnSpawnPatternControl.Instance.ParseTexture("Pattern_0", CurrentRow);
+        SpawnDataModel[] dataSet = PawnSpawnPatternControl.Instance.ParseTexture("Pattern_1", CurrentRow);
         int len = dataSet.Length;
         Vector3 pos;
         string EnemyName;

@@ -16,7 +16,7 @@
         "HP": 90,
         "Speed": 0.03,
         "Missile": {
-            "Speed": 1,
+            "Speed": 5,
             "Damage": 5,
             "Delay": 1,
             "Type": "Normal 1",
@@ -28,7 +28,7 @@
         "HP": 150,
         "Speed": 0.03,
         "Missile": {
-            "Speed": 1,
+            "Speed": 5,
             "Damage": 10,
             "Delay": 1,
             "Type": "Normal 2",
@@ -40,7 +40,7 @@
         "HP": 210,
         "Speed": 0.03,
         "Missile": {
-            "Speed": 1,
+            "Speed": 5,
             "Damage": 15,
             "Delay": 1,
             "Type": "Super 1",
@@ -52,7 +52,7 @@
         "HP": 240,
         "Speed": 0.03,
         "Missile": {
-            "Speed": 1,
+            "Speed": 5,
             "Damage": 20,
             "Delay": 1,
             "Type": "Super 2",

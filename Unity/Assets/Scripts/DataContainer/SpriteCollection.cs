@@ -20,6 +20,10 @@ public class SpriteCollection : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < len; i++)
+        {
+            Debug.Log(Sprites [i].name);
+        }
         return null;
     }
 }
