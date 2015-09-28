@@ -13,6 +13,12 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        if (null == App.Instance)
+        {
+            Application.LoadLevel (App.HOME_LEVEL);
+            return;
+        }
+
         Instance = this;
         Instance_EnemySpawnControl = GetComponent<EnemySpawnControl>();
         Instance_InputControl = GetComponent<PlayerMoveInputControl>();
