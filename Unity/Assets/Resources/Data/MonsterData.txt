@@ -1,0 +1,32 @@
+{
+	"Enemy_0":
+	{
+		"SpriteName": "mon0",
+		"HP": 20,
+		"Speed": 0.035
+	},
+	"Enemy_1":
+	{
+		"SpriteName": "mon1",
+		"HP": 30,
+		"Speed": 0.035
+	},
+	"Enemy_1_1":
+	{
+		"SpriteName": "mon1_1",
+		"HP": 50,
+		"Speed": 0.035
+	},
+	"Enemy_2":
+	{
+		"SpriteName": "mon2",
+		"HP": 70,
+		"Speed": 0.035
+	},
+	"Enemy_3":
+	{
+		"SpriteName": "mon3",
+		"HP": 80,
+		"Speed": 0.035
+	}
+}

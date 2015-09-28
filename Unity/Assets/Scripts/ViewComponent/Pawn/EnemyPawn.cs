@@ -4,9 +4,17 @@ using System.Collections;
 
 public sealed class EnemyPawn : Pawn
 {
-    private const float SPEED = 0.035F;
-    private Rect VALID_RECT;
     public RectTransform HPBarHUD;
+    private string EnemyName;
+    private Rect VALID_RECT;
+    private SpriteRenderer View;
+    private SpriteCollection SpriteCollection;
+
+    private void Awake()
+    {
+        View = transform.FindChild("View").GetComponent<SpriteRenderer>();
+        SpriteCollection = transform.FindChild("View").GetComponent<SpriteCollection>();
+    }
 
     private void Start()
     {
@@ -31,7 +39,7 @@ public sealed class EnemyPawn : Pawn
                 transform.position = Data.Path.GetPositionGradually(Time.deltaTime);
             }
 
-            HPBarHUD.position = RectTransformUtility.WorldToScreenPoint(Game.Instance.GameCamera, transform.position) - Vector2.up * 30.0F;
+            HPBarHUD.position = RectTransformUtility.WorldToScreenPoint(Game.Instance.GameCamera, transform.position) - Vector2.up * 20.0F;
         }
     }
 
@@ -61,23 +69,28 @@ public sealed class EnemyPawn : Pawn
             HPBarHUD.gameObject.SetActive(true);
         }
 
-        Data = new PawnDataModel(this);
-        Data.Velocity = Vector3.down * SPEED;
-        Data.Velocity += Data.Acceleration;
-//        Data.Path = new MovePath ();
-//        Data.Path.MaxLifeTime = 5.0F;
-//        Data.Path.LifeTime = Data.Path.MaxLifeTime;
-//        Data.Path.Points = new Vector3[]
-//        {
-//            new Vector3 (-.5F, 0, 0),
-//            new Vector3 (0, -.5F, 0),
-//            new Vector3 (0, .5F, 0),
-//            new Vector3 (.5F, .5F, 0)
-//        };
+        EnemyName = DifficultyControl.Instance.GetCurrentEnemyName ();
 
-        Data.MaxHP = 100.0F;
+        string SpriteName = MonsterDatatable.Data [EnemyName] ["SpriteName"].ToString();
+        float HP = float.Parse(MonsterDatatable.Data [EnemyName] ["HP"].ToString());
+        float Speed = float.Parse(MonsterDatatable.Data [EnemyName] ["Speed"].ToString());
+
+        Data = new PawnDataModel(this);
+        Data.Velocity = Vector3.down * Speed;
+        Data.Velocity += Data.Acceleration;
+
+        Data.MaxHP = HP;
         Data.HP = Data.MaxHP;
-        Data.HitRadius = 0.1F;
+        Data.HitRadius = 0.25F;
+
+        int len = SpriteCollection.Sprites.Count;
+        for (int i = 0; i < len; i++)
+        {
+            if (SpriteCollection.Sprites [i].name.Equals(SpriteName))
+            {
+                View.sprite = SpriteCollection.Sprites [i];
+            }
+        }
     }
     
     private void OnDisable()

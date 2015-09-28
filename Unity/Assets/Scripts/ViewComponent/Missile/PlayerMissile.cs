@@ -3,7 +3,7 @@ using System.Collections;
 
 public sealed class PlayerMissile : Missile
 {
-    private const float SPEED = 0.12F;
+    public float SPEED = 0.12F;
 
     private void OnEnable()
     {

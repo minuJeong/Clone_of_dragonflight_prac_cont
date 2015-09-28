@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetGroup: []
+  SPEED: .239999995
 --- !u!212 &21243298
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -107,6 +108,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 08bb618ef07404d66840c9780886dad5,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: SPEED
+      value: .239999995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131802}

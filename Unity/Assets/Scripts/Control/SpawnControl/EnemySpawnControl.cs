@@ -6,7 +6,7 @@ public sealed class EnemySpawnControl : SpawnControl
     public static ObjectPool<GameObject> EnemyPool;
     public float SpawnDelay = 4.5F;
 
-    private const int SPAWN_COUNT = 5;
+    private const int SPAWN_COUNT = 7;
     private Rect ValidRect;
     private float STEP = 0.0F;
 

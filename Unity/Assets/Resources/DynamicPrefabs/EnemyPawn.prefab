@@ -25,6 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453178}
   - 212: {fileID: 21297408}
+  - 114: {fileID: 11447098}
   m_Layer: 8
   m_Name: View
   m_TagString: Untagged
@@ -108,7 +109,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 493998}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &493998
 Transform:
   m_ObjectHideFlags: 1
@@ -119,8 +120,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 453178}
   - {fileID: 22496958}
+  - {fileID: 453178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &11422320
@@ -135,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .659051478, g: .170853481, b: .419248194, a: 1}
+  m_Color: {r: .910715401, g: .910688162, b: .910703599, a: .74000001}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -150,6 +151,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11447098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1f080152715464096f3914f9a2a245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: c92c224a29964468e8e14cb1498fb946, type: 3}
+  - {fileID: 21300000, guid: 2e08ee05f6c91453ea4f54255d362213, type: 3}
+  - {fileID: 21300000, guid: 82a250b626c0d47cab830efe092b3462, type: 3}
+  - {fileID: 21300000, guid: 685ad31a1ba91400e928a9ffeab54a50, type: 3}
+  - {fileID: 21300000, guid: 632646ace568b4d38ab552b1fc1165bd, type: 3}
 --- !u!114 &11481518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: .0702363104, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: .870000005}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -171,9 +189,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -219,7 +237,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: .349999994
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -237,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPBarHUD: {fileID: 22496958}
+  EnemyName: Enemy_1_1
 --- !u!212 &21297408
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -261,7 +280,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2e08ee05f6c91453ea4f54255d362213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c92c224a29964468e8e14cb1498fb946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &22283134
 CanvasRenderer:
@@ -289,9 +308,9 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: 10, y: 0}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0, y: .5}
 --- !u!224 &22459688
 RectTransform:
   m_ObjectHideFlags: 1
@@ -340,11 +359,11 @@ RectTransform:
   - {fileID: 22465752}
   - {fileID: 22459688}
   m_Father: {fileID: 493998}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 54.5999985, y: 20.7999992}
+  m_AnchoredPosition: {x: 37, y: 15.1999969}
+  m_SizeDelta: {x: 30, y: 13.6000004}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:
@@ -354,6 +373,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Sprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
@@ -361,6 +384,39 @@ Prefab:
       propertyPath: HPBarHUD
       value: 
       objectReference: {fileID: 22496958}
+    - target: {fileID: 0}
+      propertyPath: m_SizeDelta.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: c92c224a29964468e8e14cb1498fb946,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2e08ee05f6c91453ea4f54255d362213,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 82a250b626c0d47cab830efe092b3462,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 685ad31a1ba91400e928a9ffeab54a50,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 632646ace568b4d38ab552b1fc1165bd,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: EnemyName
+      value: Enemy_1_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 129944}
