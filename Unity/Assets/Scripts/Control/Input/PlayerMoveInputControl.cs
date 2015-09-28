@@ -6,7 +6,7 @@ using System.Collections;
  */
 public class PlayerMoveInputControl : InputControl
 {
-    private const float CONTROL_SPEED_FACTOR = 0.0001F;
+    private const float CONTROL_SPEED_FACTOR = 0.001F;
     public PlayerPawn m_PlayerPawn;
     private Vector3 m_PreviousPressPosition;
     private bool m_IsDragging;

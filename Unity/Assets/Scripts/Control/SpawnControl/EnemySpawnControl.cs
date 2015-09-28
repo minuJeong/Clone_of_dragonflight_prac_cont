@@ -4,19 +4,22 @@ using System.Collections;
 public sealed class EnemySpawnControl : SpawnControl
 {
     public static ObjectPool<GameObject> EnemyPool;
+    public float SpawnDelay = 4.5F;
 
     private const int SPAWN_COUNT = 5;
-    private const float LEFT = -0.5F;
-    private const float RIGHT = 0.5F;
-    private const float TOP = 1.1F;
-    private const float STEP = (RIGHT - LEFT) / SPAWN_COUNT;
-    private float SpawnDelay = 2.5F;
+    private Rect ValidRect;
+    private float STEP = 0.0F;
 
     // Set in UnityEditor - prefab (not scene object)
     public GameObject m_PrototypeEnemyPawn;
 
     public override void Initialize()
     {
+        float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
+        float h = Game.Instance.GameCamera.orthographicSize * 2;
+
+        ValidRect = new Rect (-w/2, -h/2, w, h);
+
         m_SpawnDelay = SpawnDelay;
 
         // base.Initialize need to be called.
@@ -33,12 +36,13 @@ public sealed class EnemySpawnControl : SpawnControl
 
     protected override void Spawn()
     {
+        STEP = ValidRect.width / SPAWN_COUNT;
         for (int i = 0; i < SPAWN_COUNT; i++)
         {
             GameObject SpawnedEnemyPawn = EnemyPool.pop();
             SpawnedEnemyPawn.SetActive (true);
 
-            Vector3 pos = new Vector3(LEFT + (STEP * (i + 0.5F)), TOP, 0);
+            Vector3 pos = new Vector3(ValidRect.x + (STEP * (i + 0.5F)), ValidRect.yMax - 0.01F, 0);
             SpawnedEnemyPawn.transform.position = pos;
         }
     }

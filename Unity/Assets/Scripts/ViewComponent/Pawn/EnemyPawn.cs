@@ -4,13 +4,21 @@ using System.Collections;
 
 public sealed class EnemyPawn : Pawn
 {
-    private const float SPEED = 0.025F;
-    private Rect VALID_RECT = new Rect(-0.6F, -1.2F, 1.2F, 2.4F);
+    private const float SPEED = 0.035F;
+    private Rect VALID_RECT;
     public RectTransform HPBarHUD;
+
+    private void Start()
+    {
+        float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
+        float h = Game.Instance.GameCamera.orthographicSize * 2;
+
+        VALID_RECT = new Rect(-w / 2, -h / 2, w, h);
+    }
 
     private void Update()
     {
-        if (! VALID_RECT.Contains (transform.position))
+        if (! VALID_RECT.Contains(transform.position))
         {
             Die();
         } else
@@ -67,9 +75,9 @@ public sealed class EnemyPawn : Pawn
 //            new Vector3 (.5F, .5F, 0)
 //        };
 
-        Data.MaxHP = 100000.0F;
+        Data.MaxHP = 100.0F;
         Data.HP = Data.MaxHP;
-        Data.HitRadius = 0.01F;
+        Data.HitRadius = 0.1F;
     }
     
     private void OnDisable()

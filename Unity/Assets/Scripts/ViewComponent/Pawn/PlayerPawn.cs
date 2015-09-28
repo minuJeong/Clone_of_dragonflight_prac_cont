@@ -4,9 +4,16 @@ using System.Collections;
 public sealed class PlayerPawn : Pawn
 {
     #region const
-    private const float LEFT_CAGE = -0.5F;
-    private const float RIGHT_CAGE = 0.5F;
+    private float LEFT_CAGE;
+    private float RIGHT_CAGE;
     #endregion
+
+    void Start ()
+    {
+        float arm = Game.Instance.GameCamera.orthographicSize *  Game.Instance.GameCamera.aspect;
+        LEFT_CAGE = - arm;
+        RIGHT_CAGE = arm;
+    }
 
     #region public:
     public void MoveBy(Vector3 amount)
