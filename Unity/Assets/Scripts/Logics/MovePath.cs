@@ -27,22 +27,22 @@ public class MovePath
     {
         progress = Mathf.Clamp01(progress);
         
-        Vector3 sum = Vector3.zero;
+        float SumDistance = 0.0F;
         int len = Points.Length;
         for (int i = 0; i < len - 1; i++)
         {
-            sum += Points [i] - Points [i + 1];
+            SumDistance += Vector3.Distance (Points [i], Points [i + 1]);
         }
         
-        float progressDistance = sum.magnitude * progress;
+        float progressDistance = SumDistance * progress;
         for (int i = 0; i < len - 1; i++)
         {
-            Vector3 delta = Points [i] - Points [i + 1];
-            progressDistance -= delta.magnitude;
+            float distance = Vector3.Distance (Points [i], Points [i + 1]);
+            progressDistance -= distance;
             
-            if (progressDistance < 0)
+            if (progressDistance <= 0)
             {
-                return Vector3.Lerp(Points [i + 1], Points [i], (-progressDistance / delta.magnitude));
+                return Vector3.Lerp(Points [i + 1], Points [i], (-progressDistance / distance));
             }
         }
         
@@ -56,6 +56,6 @@ public class MovePath
     public virtual Vector3 GetPositionGradually(float deltaTime)
     {
         LifeTime -= deltaTime;
-        return GetPosition(LifeTime / MaxLifeTime);
+        return GetPosition(1.0F - LifeTime / MaxLifeTime);
     }
 }

@@ -21,11 +21,11 @@ public sealed class PlayerPawn : Pawn
     #endregion
 
 
-    protected override void Start()
+    private void OnEnable()
     {
-        base.Start();
-
+        Data = new PawnDataModel(this);
         Data.MaxHP = 100.0F;
+        Data.HP = Data.MaxHP;
     }
 
     public override void Die()

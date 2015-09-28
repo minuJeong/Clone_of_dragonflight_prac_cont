@@ -5,7 +5,7 @@ public sealed class PlayerMissile : Missile
 {
     private const float SPEED = 0.035F;
 
-    private void Start()
+    private void OnEnable()
     {
         Data.Velocity = Vector3.up * SPEED;
         Data.Acceleration = Vector3.zero;

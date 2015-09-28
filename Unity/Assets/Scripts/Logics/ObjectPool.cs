@@ -55,7 +55,6 @@ public class ObjectPool<T> where T : class
     {
         if (this.objects.Count <= 0)
         {
-            Debug.Log("Pool Expanding..");
             allocate();
         }
 

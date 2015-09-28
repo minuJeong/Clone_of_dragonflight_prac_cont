@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
     public static PlayerMoveInputControl Instance_InputControl;
 
     public Camera GameCamera;
+    public Canvas HUDCanvas;
 
     // Use this for initialization
     void Awake()

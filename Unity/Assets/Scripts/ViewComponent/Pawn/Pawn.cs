@@ -5,11 +5,6 @@ public abstract class Pawn : MonoBehaviour
 {
     public PawnDataModel Data;
 
-    protected virtual void Start()
-    {
-        Data = new PawnDataModel(this);
-    }
-
     public virtual void Die()
     {
         gameObject.SetActive(false);

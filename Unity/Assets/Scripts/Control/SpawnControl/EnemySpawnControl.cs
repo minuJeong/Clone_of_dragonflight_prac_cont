@@ -8,7 +8,7 @@ public sealed class EnemySpawnControl : SpawnControl
     private const int SPAWN_COUNT = 5;
     private const float LEFT = -0.5F;
     private const float RIGHT = 0.5F;
-    private const float TOP = 2.0F;
+    private const float TOP = 1.1F;
     private const float STEP = (RIGHT - LEFT) / SPAWN_COUNT;
     private float SpawnDelay = 2.5F;
 
