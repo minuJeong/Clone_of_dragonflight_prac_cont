@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bf18ace668b4a6ebce5dddd4bf0353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnDelay: 1
+  SpawnDelay: .5
   m_PrototypeEnemyPawn: {fileID: 129944, guid: 23e401d925edd469e942330d3bac2498, type: 2}
 --- !u!114 &1660271522
 MonoBehaviour:
