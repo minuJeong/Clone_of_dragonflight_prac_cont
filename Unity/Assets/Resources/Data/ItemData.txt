@@ -1,0 +1,7 @@
+{
+	"ShootUp":
+	{
+		"Rate": 1,
+		"SpriteName": "heal"
+	}
+}

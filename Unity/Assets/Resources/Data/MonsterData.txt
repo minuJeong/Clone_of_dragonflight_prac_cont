@@ -2,7 +2,9 @@
     "Enemy_0": {
         "SpriteName": "mon0",
         "HP": 60,
-        "Speed": 0.03
+        "Speed": 0.03,
+        "Score": 10,
+        "DropItemRating": 0
     },
     "Enemy_1": {
         "SpriteName": "mon1",
@@ -14,7 +16,9 @@
             "Delay": 1,
             "Type": "Normal 1",
             "SpriteName": "mon1_bullet"
-        }
+        },
+        "Score": 20,
+        "DropItemRating": 10
     },
     "Enemy_1_1": {
         "SpriteName": "mon1_1",
@@ -26,7 +30,9 @@
             "Delay": 1,
             "Type": "Normal 2",
             "SpriteName": "mon2_bullet"
-        }
+        },
+        "Score": 30,
+        "DropItemRating": 15
     },
     "Enemy_2": {
         "SpriteName": "mon2",
@@ -38,7 +44,9 @@
             "Delay": 1,
             "Type": "Super 1",
             "SpriteName": "mon3_bullet"
-        }
+        },
+        "Score": 40,
+        "DropItemRating": 20
     },
     "Enemy_3": {
         "SpriteName": "mon3",
@@ -50,15 +58,19 @@
             "Delay": 1,
             "Type": "Super 2",
             "SpriteName": "mon3_bullet2"
-        }
+        },
+        "DropItemRating": 50
     },
     "Obstacle_0": {
         "SpriteName": "obstacle_0",
         "HP": 240,
-        "Speed": 0.03
+        "Speed": 0.03,
+        "Score": 10,
+        "DropItemRating": 10
     },
     "Obstacle_1": {
         "SpriteName": "obstacle_1",
-        "Speed": 0.03
+        "Speed": 0.03,
+        "DropItemRating": 0
     }
 }

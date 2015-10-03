@@ -68,6 +68,9 @@ public class PawnDataModel
     public MovePath Path;
     public float HitRadius;
 
+    public float DropItemRating;
+    public int ScoreGain;
+
     public PawnDataModel(Pawn ownerPawn)
     {
         OwnerPawn = ownerPawn;

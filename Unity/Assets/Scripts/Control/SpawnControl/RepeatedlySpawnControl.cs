@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Object pool should be controlled after inherited
-public abstract class SpawnControl : MonoBehaviour
+public abstract class RepeatedlySpawnControl : MonoBehaviour
 {
     protected bool m_IsInitialized;
     protected bool m_IsSpawning;
@@ -14,7 +13,7 @@ public abstract class SpawnControl : MonoBehaviour
     {
         m_IsInitialized = true;
         m_WaitTime = new WaitForSeconds(m_SpawnDelay);
-        StartCoroutine("SpawnCycle");
+        StartCoroutine(SpawnCycle());
     }
 
     public virtual void StartSpawn()

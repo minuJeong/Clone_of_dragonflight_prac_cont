@@ -9,7 +9,7 @@ Material:
   m_Name: ScrollingBackground
   m_Shader: {fileID: 4800000, guid: 4add82e30e9f74b979c5fa6f9431d3f9, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_LightmapFlags: 0
   m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:

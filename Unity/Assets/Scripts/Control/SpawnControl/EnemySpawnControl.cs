@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public sealed class EnemySpawnControl : SpawnControl
+public sealed class EnemySpawnControl : RepeatedlySpawnControl
 {
     public static ObjectPool<GameObject> EnemyPool;
     public float SpawnDelay = 0.125F;

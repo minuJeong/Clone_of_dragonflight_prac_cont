@@ -46,12 +46,12 @@ public sealed class EnemyPawn : Pawn
 
     public override void Die()
     {
-        if (null != EnemySpawnControl.EnemyPool)
-        {
-            HPBarHUD.position = new Vector3(0, -1000, 0);
-            gameObject.SetActive(false);
-            EnemySpawnControl.EnemyPool.push(gameObject);
-        }
+        HPBarHUD.position = new Vector3(0, -1000, 0);
+        gameObject.SetActive(false);
+        EnemySpawnControl.EnemyPool.push(gameObject);
+
+        DropItemSpawnControl.Instance.Spawn(transform.position, Data.DropItemRating);
+        Game.Instance.Score += Data.ScoreGain;
     }
 
     public override void OnHPChanged(float before, float after)
@@ -118,6 +118,18 @@ public sealed class EnemyPawn : Pawn
                 ShootDelay = new WaitForSeconds(Delay);
                 StartCoroutine(SpawnMissile());
             }
+        }
+
+        const string DROPRATING_KEY = "DropItemRating";
+        if (MonsterDatatable.Data [EnemyName].hasKey(DROPRATING_KEY))
+        {
+            Data.DropItemRating = MonsterDatatable.Data [EnemyName] [DROPRATING_KEY].AsFloat;
+        }
+
+        const string SCOREGAIN_KEY = "Score";
+        if (MonsterDatatable.Data [EnemyName].hasKey(SCOREGAIN_KEY))
+        {
+            Data.ScoreGain = MonsterDatatable.Data [EnemyName] [SCOREGAIN_KEY].AsInt;
         }
     }
 

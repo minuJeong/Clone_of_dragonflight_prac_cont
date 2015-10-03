@@ -71,7 +71,7 @@ public abstract class Missile : MonoBehaviour
     protected virtual void Die ()
     {
         gameObject.SetActive (false);
-        MissileSpawnControl.Instance.MissilePool.push (gameObject);
+        PlayerMissileSpawnControl.Instance.MissilePool.push (gameObject);
     }
 }
 
