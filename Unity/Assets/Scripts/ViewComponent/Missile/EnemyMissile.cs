@@ -55,13 +55,13 @@ public class EnemyMissile : Missile
         }
 
         player.Data.HP -= Data.Damage;
-        Die ();
+        Die();
     }
 
     protected override void Die()
     {
-        gameObject.SetActive (false);
-        EnemyMissileSpawnControl.Instance.MissilePool.push (gameObject);
+        gameObject.SetActive(false);
+        EnemyMissileSpawnControl.Instance.MissilePool.push(gameObject);
     }
 }
 
@@ -91,25 +91,31 @@ public class EnemyMissileDataLoader
 
     public MissileDataModel GetDataModel(string enemyName)
     {
-        JSONNode dat = MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE];
-
-        float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
-        float h = Game.Instance.GameCamera.orthographicSize * 2;
-
         MissileDataModel model = new MissileDataModel();
-        float Speed = float.Parse(dat [DATAKEY_SPEED].ToString());
-        model.Velocity = Vector3.down * Speed;
-        model.Acceleration = Vector3.zero;
-        model.Friction = 1.0F;
-        model.ValidArea = new Rect(-w / 2, -h / 2, w + 0.01F, h);
-        model.CollisionDistanceSqrt = 0.1F;
-        model.Damage = float.Parse(dat [DATAKEY_DAMAGE].ToString());
+        if (! MonsterDatatable.Data.hasKey(enemyName))
+        {
+            Debug.Log("Enemy key not foud: " + enemyName);
+        } else
+        {
+            JSONNode dat = MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE];
 
+            float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
+            float h = Game.Instance.GameCamera.orthographicSize * 2;
+
+        
+            float Speed = dat [DATAKEY_SPEED].AsFloat;
+            model.Velocity = Vector3.down * Speed;
+            model.Acceleration = Vector3.zero;
+            model.Friction = 1.0F;
+            model.ValidArea = new Rect(-w / 2, -h / 2, w + 0.01F, h);
+            model.CollisionDistanceSqrt = 0.1F;
+            model.Damage = dat [DATAKEY_DAMAGE].AsFloat;
+        }
         return model;
     }
 
     public string GetSpriteName(string enemyName)
     {
-        return MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE] [DATAKEY_SPRITENAME].ToString();
+        return MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE] [DATAKEY_SPRITENAME];
     }
 }

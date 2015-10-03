@@ -65,25 +65,28 @@ public sealed class EnemyPawn : Pawn
     private void OnEnable()
     {
         // if data has sprite name key,
-        if (MonsterDatatable.Data [EnemyName].hasKey("SpriteName"))
+        const string SPRITENAME_KEY = "SpriteName";
+        if (MonsterDatatable.Data [EnemyName].hasKey(SPRITENAME_KEY))
         {
-            string SpriteName = MonsterDatatable.Data [EnemyName] ["SpriteName"];
+            string SpriteName = MonsterDatatable.Data [EnemyName] [SPRITENAME_KEY];
             View.sprite = SpriteCollection.GetSpriteByName(SpriteName);
         }
 
         Data = new PawnDataModel(this);
 
         // if data has Speed key,
-        if (MonsterDatatable.Data [EnemyName].hasKey("Speed"))
+        const string SPEED_KEY = "Speed";
+        if (MonsterDatatable.Data [EnemyName].hasKey(SPEED_KEY))
         {
-            Data.Velocity = Vector3.down * MonsterDatatable.Data [EnemyName] ["Speed"].AsFloat;
+            Data.Velocity = Vector3.down * MonsterDatatable.Data [EnemyName] [SPEED_KEY].AsFloat;
             Data.Velocity += Data.Acceleration;
         }
 
         // if data has HP key,
-        if (MonsterDatatable.Data [EnemyName].hasKey("HP"))
+        const string HP_KEY = "HP";
+        if (MonsterDatatable.Data [EnemyName].hasKey(HP_KEY))
         {
-            Data.MaxHP = MonsterDatatable.Data [EnemyName] ["HP"].AsFloat;
+            Data.MaxHP = MonsterDatatable.Data [EnemyName] [HP_KEY].AsFloat;
             Data.HP = Data.MaxHP;
 
             if (null != HPBarHUD)
@@ -104,9 +107,11 @@ public sealed class EnemyPawn : Pawn
         Data.HitRadius = 0.25F;
 
         // if data has missile key,
-        if (MonsterDatatable.Data [EnemyName].hasKey("Missiles"))
+        const string MISSILE_KEY = "Missile";
+        if (MonsterDatatable.Data [EnemyName].hasKey(MISSILE_KEY))
         {
-            float Delay = MonsterDatatable.Data [EnemyName] ["Missile"] ["Delay"].AsFloat;
+            const string DELAY_KEY = "Delay";
+            float Delay = MonsterDatatable.Data [EnemyName] [MISSILE_KEY] [DELAY_KEY].AsFloat;
 
             if (Delay > 0)
             {
