@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LitJson;
-
+using SimpleJSON;
 
 /**
  * This class is static class.
@@ -9,15 +8,15 @@ using LitJson;
 [ExecuteInEditMode]
 public class StringTable
 {
-    private static JsonData m_Data;
+    private static JSONNode m_Data;
 
-    public static JsonData Data
+    public static JSONNode Data
     {
         get
         {
             if (null == m_Data)
             {
-                Initialize ();
+                Initialize();
             }
             return m_Data;
         }
@@ -26,6 +25,6 @@ public class StringTable
     private static void Initialize()
     {
         TextAsset LoadedStringTable = Resources.Load<TextAsset>("Data/StringTable");
-        m_Data = JsonMapper.ToObject(LoadedStringTable.text);
+        m_Data = JSON.Parse(LoadedStringTable.text);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LitJson;
+using SimpleJSON;
 
 /**
  * EnemyMissile should be initialized with Enemy Name
@@ -87,11 +87,11 @@ public class EnemyMissileDataLoader
         }
     }
 
-    private static JsonData Data;
+    private static JSONNode Data;
 
     public MissileDataModel GetDataModel(string enemyName)
     {
-        JsonData dat = MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE];
+        JSONNode dat = MonsterDatatable.Data [enemyName] [DATAKEY_MISSILE];
 
         float w = Game.Instance.GameCamera.orthographicSize * Game.Instance.GameCamera.aspect * 2;
         float h = Game.Instance.GameCamera.orthographicSize * 2;

@@ -38,6 +38,11 @@ public sealed class PlayerMissile : Missile
             return;
         }
 
+        if (enemyPawn.Data.IsInvincible)
+        {
+            return;
+        }
+
         enemyPawn.Data.HP -= Data.Damage;
         Die();
     }

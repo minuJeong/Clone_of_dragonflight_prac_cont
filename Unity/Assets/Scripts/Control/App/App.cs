@@ -6,6 +6,7 @@ public class App : MonoBehaviour
 {
     public static App Instance;
     public const string HOME_LEVEL = "Home";
+    public const string GAME_LEVEL = "GameHome";
     public StringTable m_StringTable;
 
     // Use this for initialization

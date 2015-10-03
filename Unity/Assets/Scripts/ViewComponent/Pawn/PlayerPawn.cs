@@ -39,5 +39,7 @@ public sealed class PlayerPawn : Pawn
     {
         Debug.Log("GAMEOVER: PlayerPawn is Dead.");
         base.Die();
+
+        Application.LoadLevel (App.HOME_LEVEL);
     }
 }

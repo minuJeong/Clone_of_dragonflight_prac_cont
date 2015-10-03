@@ -22,7 +22,7 @@ public class SpriteCollection : MonoBehaviour
 
         for (int i = 0; i < len; i++)
         {
-            Debug.Log(Sprites [i].name);
+            Debug.Log("can't match sprite name: " + Sprites [i].name + ", " + spriteName);
         }
         return null;
     }
