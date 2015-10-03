@@ -11,8 +11,8 @@ public class PawnSpawnPatternControl
     private static Color CURRENT_LEVEL = new Color(0, 0, 0);
     private static Color CURRENT_LEVEL_PLUS_1 = new Color((float)0x72 / 0xFF, 0, (float)0xA3 / 0xFF);
     private static Color CURRENT_LEVEL_PLUS_2 = new Color((float)0x16 / 0xFF, 0, (float)0x82 / 0xFF);
-    private static Color OBSTACLE_BREAKABLE = new Color(1, (float)0xF2 / 0xFF, 0);
-    private static Color OBSTACLE_UNBREAKABLE = new Color(1, 0, 0);
+    private static Color OBSTACLE_BREAKABLE = new Color(1, 0, 0);
+    private static Color OBSTACLE_UNBREAKABLE = new Color(1, (float)0xF2 / 0xFF, 0);
 
     public enum SpawnPattern
     {
