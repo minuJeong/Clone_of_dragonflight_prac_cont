@@ -40,12 +40,12 @@ public sealed class EnemySpawnControl : SpawnControl
 
         SpawnDataModel[] dataSet = PawnSpawnPatternControl.Instance.ParseTexture("Pattern_1", CurrentRow);
         int len = dataSet.Length;
-        Vector3 pos;
-        string EnemyName = "";
 
         for (int i = 0; i < len; i++)
         {
             SpawnDataModel data = dataSet [i];
+            Vector3 pos;
+            string EnemyName = "";
             pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
 
             if (null == data)

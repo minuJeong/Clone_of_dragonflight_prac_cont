@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
  * Color of level texture to spawn pattern
@@ -13,6 +14,8 @@ public class PawnSpawnPatternControl
     private static Color CURRENT_LEVEL_PLUS_2 = new Color((float)0x16 / 0xFF, 0, (float)0x82 / 0xFF);
     private static Color OBSTACLE_BREAKABLE = new Color(1, 0, 0);
     private static Color OBSTACLE_UNBREAKABLE = new Color(1, (float)0xF2 / 0xFF, 0);
+
+    private Dictionary <string, Texture2D> m_TextureCaching;
 
     public enum SpawnPattern
     {
@@ -33,6 +36,7 @@ public class PawnSpawnPatternControl
             if (null == m_Instance)
             {
                 m_Instance = new PawnSpawnPatternControl();
+                m_Instance.m_TextureCaching = new Dictionary<string, Texture2D>();
             }
             return m_Instance;
         }
@@ -40,7 +44,15 @@ public class PawnSpawnPatternControl
 
     public SpawnDataModel[] ParseTexture(string LevelName, int Row)
     {
-        Texture2D DataTexture = Resources.Load<Texture2D>(SPAWN_DATA_PATH + LevelName);
+        Texture2D DataTexture;
+        if (m_TextureCaching.ContainsKey(LevelName))
+        {
+            DataTexture = m_TextureCaching [LevelName];
+        } else
+        {
+            DataTexture = Resources.Load<Texture2D>(SPAWN_DATA_PATH + LevelName);
+        }
+
         Color[] Pixels = DataTexture.GetPixels();
         int len_x = DataTexture.width;
         SpawnDataModel[] SpawnDataSet = new SpawnDataModel[len_x];
@@ -76,13 +88,13 @@ public class PawnSpawnPatternControl
                 SpawnDataSet [x].SpawnPattern = SpawnPattern.OBSTACLE_UNBREAKABLE;
             } else
             {
-                Debug.Log (CURRENT_LEVEL_PLUS_1);
-                Debug.Log (CURRENT_LEVEL_PLUS_2);
-                Debug.Log (OBSTACLE_BREAKABLE);
-                Debug.Log (OBSTACLE_UNBREAKABLE);
+                Debug.Log(CURRENT_LEVEL_PLUS_1);
+                Debug.Log(CURRENT_LEVEL_PLUS_2);
+                Debug.Log(OBSTACLE_BREAKABLE);
+                Debug.Log(OBSTACLE_UNBREAKABLE);
                 Debug.LogError("[-] No match color found." + c);
-                Debug.Log (x + ", " + Row);
-                Debug.Break ();
+                Debug.Log(x + ", " + Row);
+                Debug.Break();
             }
         }
 
