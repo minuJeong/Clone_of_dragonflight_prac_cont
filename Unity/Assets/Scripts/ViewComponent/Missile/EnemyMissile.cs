@@ -97,7 +97,8 @@ public class EnemyMissileDataLoader
         float h = Game.Instance.GameCamera.orthographicSize * 2;
 
         MissileDataModel model = new MissileDataModel();
-        model.Velocity = Vector3.down * float.Parse(dat [DATAKEY_SPEED].ToString());
+        float Speed = float.Parse(dat [DATAKEY_SPEED].ToString());
+        model.Velocity = Vector3.down * Speed;
         model.Acceleration = Vector3.zero;
         model.Friction = 1.0F;
         model.ValidArea = new Rect(-w / 2, -h / 2, w + 0.01F, h);

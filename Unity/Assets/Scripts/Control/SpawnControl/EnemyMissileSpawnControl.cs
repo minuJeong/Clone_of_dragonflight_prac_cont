@@ -51,9 +51,16 @@ public class EnemyMissileSpawnControl : MonoBehaviour
 
     public void SpawnMissile(Vector3 pos, string enemyName)
     {
-        GameObject SpawnedMissile = MissilePool.pop();
-        SpawnedMissile.GetComponent<EnemyMissile>().EnemyName = enemyName;
-        SpawnedMissile.transform.position = pos;
-        SpawnedMissile.SetActive(true);
+        GameObject SpawnedMissile_1 = MissilePool.pop();
+        SpawnedMissile_1.GetComponent<EnemyMissile>().EnemyName = enemyName;
+        SpawnedMissile_1.transform.position = pos;
+        SpawnedMissile_1.SetActive(true);
+        SpawnedMissile_1.GetComponent<EnemyMissile> ().Data.Velocity.x += Mathf.Cos (60.0F * Mathf.Deg2Rad) * 5;
+
+        GameObject SpawnedMissile_2 = MissilePool.pop();
+        SpawnedMissile_2.GetComponent<EnemyMissile>().EnemyName = enemyName;
+        SpawnedMissile_2.transform.position = pos;
+        SpawnedMissile_2.SetActive(true);
+        SpawnedMissile_2.GetComponent<EnemyMissile> ().Data.Velocity.x -= Mathf.Cos (60.0F * Mathf.Deg2Rad) * 5;
     }
 }
