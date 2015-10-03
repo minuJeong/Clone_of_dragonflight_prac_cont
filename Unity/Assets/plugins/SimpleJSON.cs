@@ -920,6 +920,11 @@ namespace SimpleJSON
                     yield return key;
             }
         }
+
+        public override bool hasKey(string key)
+        {
+            return m_Dict.ContainsKey (key);
+        }
     } // End of JSONClass
  
     public class JSONData : JSONNode
