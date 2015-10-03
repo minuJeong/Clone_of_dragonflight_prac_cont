@@ -2,14 +2,7 @@
     "Enemy_0": {
         "SpriteName": "mon0",
         "HP": 60,
-        "Speed": 0.03,
-        "Missile": {
-            "Speed": 0,
-            "Delay": 0,
-            "Damage": 0,
-            "Type": "None",
-            "SpriteName": ""
-        }
+        "Speed": 0.03
     },
     "Enemy_1": {
         "SpriteName": "mon1",
@@ -58,5 +51,14 @@
             "Type": "Super 2",
             "SpriteName": "mon3_bullet2"
         }
+    },
+    "Obstacle_0": {
+        "SpriteName": "obstacle_0",
+        "HP": 240,
+        "Speed": 0.03
+    },
+    "Obstacle_1": {
+        "SpriteName": "obstacle_1",
+        "Speed": 0.03
     }
 }

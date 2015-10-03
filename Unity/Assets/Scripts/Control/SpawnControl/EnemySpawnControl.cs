@@ -29,7 +29,7 @@ public sealed class EnemySpawnControl : SpawnControl
         {
             GameObject enemyPawn = GameObject.Instantiate(m_PrototypeEnemyPawn);
             enemyPawn.SetActive(false);
-            enemyPawn.transform.SetParent(Game.Instance.transform.FindChild ("EnemyPawnPool"));
+            enemyPawn.transform.SetParent(Game.Instance.transform.FindChild("EnemyPawnPool"));
             return enemyPawn;
         });
     }
@@ -41,11 +41,13 @@ public sealed class EnemySpawnControl : SpawnControl
         SpawnDataModel[] dataSet = PawnSpawnPatternControl.Instance.ParseTexture("Pattern_1", CurrentRow);
         int len = dataSet.Length;
         Vector3 pos;
-        string EnemyName;
+        string EnemyName = "";
 
         for (int i = 0; i < len; i++)
         {
             SpawnDataModel data = dataSet [i];
+            pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
+
             if (null == data)
             {
                 continue;
@@ -54,34 +56,32 @@ public sealed class EnemySpawnControl : SpawnControl
             switch (data.SpawnPattern)
             {
                 case PawnSpawnPatternControl.SpawnPattern.NONE:
-                    continue;
-//                    break;
+                    break;
 
                 case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL:
-                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
                     EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(0);
-                    SpawnOneEnemy(pos, EnemyName);
                     break;
 
                 case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL_PLUS_1:
-                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
                     EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(1);
-                    SpawnOneEnemy(pos, EnemyName);
                     break;
 
                 case PawnSpawnPatternControl.SpawnPattern.CURRENT_LEVEL_PLUS_2:
-                    pos = new Vector3(ValidRect.x + (STEP * (data.Position + 0.5F)), ValidRect.yMax - 0.01F, 0);
                     EnemyName = DifficultyControl.Instance.GetCurrentEnemyName(2);
-                    SpawnOneEnemy(pos, EnemyName);
                     break;
 
                 case PawnSpawnPatternControl.SpawnPattern.OBSTACLE_BREAKABLE:
-                    continue;
-//                    break;
+                    EnemyName = DifficultyControl.Instance.GetCurrentObstacleName(false);
+                    break;
 
                 case PawnSpawnPatternControl.SpawnPattern.OBSTACLE_UNBREAKABLE:
-                    continue;
-//                    break;
+                    EnemyName = DifficultyControl.Instance.GetCurrentObstacleName(true);
+                    break;
+            }
+
+            if (EnemyName != "")
+            {
+                SpawnOneEnemy(pos, EnemyName);
             }
         }
 

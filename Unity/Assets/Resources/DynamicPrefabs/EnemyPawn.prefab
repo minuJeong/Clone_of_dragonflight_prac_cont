@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &119658
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82a250b626c0d47cab830efe092b3462, type: 3}
   - {fileID: 21300000, guid: 685ad31a1ba91400e928a9ffeab54a50, type: 3}
   - {fileID: 21300000, guid: 632646ace568b4d38ab552b1fc1165bd, type: 3}
+  - {fileID: 21300000, guid: bf92d0cfb2f1a4a0c9cf8b89c7f5b8c5, type: 3}
+  - {fileID: 21300000, guid: 53a862c9cf972463d8b9f59d786cbc57, type: 3}
 --- !u!114 &11481518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,7 +376,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Sprites.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -416,6 +418,20 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: EnemyName
       value: Enemy_1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: bf92d0cfb2f1a4a0c9cf8b89c7f5b8c5,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 53a862c9cf972463d8b9f59d786cbc57,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

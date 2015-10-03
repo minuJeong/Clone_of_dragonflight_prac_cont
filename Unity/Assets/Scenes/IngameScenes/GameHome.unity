@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 750, y: 1334}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bf18ace668b4a6ebce5dddd4bf0353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnDelay: 1
+  SpawnDelay: .5
   m_PrototypeEnemyPawn: {fileID: 129944, guid: 23e401d925edd469e942330d3bac2498, type: 2}
 --- !u!114 &1660271522
 MonoBehaviour:

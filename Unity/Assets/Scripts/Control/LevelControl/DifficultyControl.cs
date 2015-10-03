@@ -18,7 +18,7 @@ public class DifficultyControl
         }
     }
 
-    private string[] MonsterNames = new string[]
+    public string[] MonsterNames = new string[]
     {
         "Enemy_0",
         "Enemy_1",
@@ -26,9 +26,25 @@ public class DifficultyControl
         "Enemy_2",
         "Enemy_3"
     };
+    public string[] ObstacleNames = new string[]
+    {
+        "Obstacle_0",
+        "Obstacle_1"
+    };
 
     public string GetCurrentEnemyName(int offset)
     {
         return MonsterNames [Mathf.Clamp(Difficulty + offset, 0, MonsterNames.Length - 1)];
+    }
+
+    public string GetCurrentObstacleName(bool invincible)
+    {
+        if (invincible)
+        {
+            return ObstacleNames [1];
+        } else
+        {
+            return ObstacleNames [0];
+        }
     }
 }

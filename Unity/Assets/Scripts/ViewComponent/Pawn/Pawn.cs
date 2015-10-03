@@ -20,6 +20,8 @@ public class PawnDataModel
     private Pawn OwnerPawn;
     private float m_HP;
 
+    public bool IsInvincible;
+
     public float HP
     {
         get

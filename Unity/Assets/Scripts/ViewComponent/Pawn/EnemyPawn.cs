@@ -64,30 +64,55 @@ public sealed class EnemyPawn : Pawn
     // Show/Hide HPBar HUD
     private void OnEnable()
     {
-        if (null != HPBarHUD)
+        // if data has sprite name key,
+        if (MonsterDatatable.Data [EnemyName].hasKey("SpriteName"))
         {
-            HPBarHUD.transform.SetParent(Game.Instance.HUDCanvas.transform);
-            HPBarHUD.gameObject.SetActive(true);
+            string SpriteName = MonsterDatatable.Data [EnemyName] ["SpriteName"];
+            View.sprite = SpriteCollection.GetSpriteByName(SpriteName);
         }
 
-        string SpriteName = MonsterDatatable.Data [EnemyName] ["SpriteName"].ToString();
-        float HP = float.Parse(MonsterDatatable.Data [EnemyName] ["HP"].ToString());
-        float Speed = float.Parse(MonsterDatatable.Data [EnemyName] ["Speed"].ToString());
-
         Data = new PawnDataModel(this);
-        Data.Velocity = Vector3.down * Speed;
-        Data.Velocity += Data.Acceleration;
-        Data.MaxHP = HP;
-        Data.HP = Data.MaxHP;
+
+        // if data has Speed key,
+        if (MonsterDatatable.Data [EnemyName].hasKey("Speed"))
+        {
+            Data.Velocity = Vector3.down * MonsterDatatable.Data [EnemyName] ["Speed"].AsFloat;
+            Data.Velocity += Data.Acceleration;
+        }
+
+        // if data has HP key,
+        if (MonsterDatatable.Data [EnemyName].hasKey("HP"))
+        {
+            Data.MaxHP = MonsterDatatable.Data [EnemyName] ["HP"].AsFloat;
+            Data.HP = Data.MaxHP;
+
+            if (null != HPBarHUD)
+            {
+                HPBarHUD.transform.SetParent(Game.Instance.HUDCanvas.transform);
+                HPBarHUD.gameObject.SetActive(true);
+            }
+        } else
+        {
+            Data.IsInvincible = true;
+            if (null != HPBarHUD)
+            {
+                HPBarHUD.gameObject.SetActive(false);
+            }
+        }
+
+        // TODO: add hit radius key to data
         Data.HitRadius = 0.25F;
 
-        View.sprite = SpriteCollection.GetSpriteByName(SpriteName);
-
-        float Delay = float.Parse(MonsterDatatable.Data [EnemyName] ["Missile"] ["Delay"].ToString());
-        if (Delay > 0)
+        // if data has missile key,
+        if (MonsterDatatable.Data [EnemyName].hasKey("Missiles"))
         {
-            ShootDelay = new WaitForSeconds(Delay);
-            StartCoroutine("SpawnMissile");
+            float Delay = MonsterDatatable.Data [EnemyName] ["Missile"] ["Delay"].AsFloat;
+
+            if (Delay > 0)
+            {
+                ShootDelay = new WaitForSeconds(Delay);
+                StartCoroutine(SpawnMissile());
+            }
         }
     }
 
